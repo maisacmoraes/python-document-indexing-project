@@ -1,5 +1,24 @@
+from ting_file_management.file_management import txt_importer
+import sys
+
+
 def process(path_file, instance):
-    """Aqui irá sua implementação"""
+    name_file = txt_importer(path_file)
+    index = 0
+
+    while index < len(instance):
+        if instance.search(index)["nome_do_arquivo"] == path_file:
+            return
+        index += 1
+
+    dicionario = {
+        "nome_do_arquivo": path_file,
+        "qtd_linhas": len(name_file),
+        "linhas_do_arquivo": name_file,
+    }
+
+    instance.enqueue(dicionario)
+    sys.stdout.write(str(dicionario))
 
 
 def remove(instance):
